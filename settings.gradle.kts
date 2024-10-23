@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Kt Study"
 include(":app")
+include(":base")
