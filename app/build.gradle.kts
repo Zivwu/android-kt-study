@@ -64,6 +64,7 @@ dependencies {
     implementation(libs.material3)
 
     implementation(libs.retrofit)
+    implementation(libs.logging.interceptor)
     implementation(libs.moshi)
     implementation(libs.moshi.convert)
     ksp(libs.moshi.gen)
@@ -77,4 +78,5 @@ dependencies {
     androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
+
 }

@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -23,10 +22,18 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.semantics.Role.Companion.Button
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.lifecycleScope
+import com.example.ktstudy.login.data.api.UserApi
 import com.example.ktstudy.ui.theme.KtStudyTheme
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,11 +46,51 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    OnboardingScreen(onContinueClicked = {
+
+                       request()
+                    })
                 }
             }
         }
     }
+
+
+
+    fun  request(){
+
+        val builder = OkHttpClient.Builder()
+            .addNetworkInterceptor(HttpLoggingInterceptor())
+
+
+        val retrofit = Retrofit.Builder()
+            .client(builder.build())
+            .baseUrl("https://www.wanandroid.com")
+            .addConverterFactory(MoshiConverterFactory.create())
+            .build()
+        val userApi = retrofit.create(UserApi::class.java);
+
+
+        lifecycleScope.launch {
+
+            try {
+                Thread.sleep(100000)
+                var result =  userApi.register("ming0001","a123456","a123456")
+                println("Current thread: ${Thread.currentThread().name}")
+                println(result.toString())
+            }catch ( e : Exception ){
+                e.printStackTrace()
+
+//                print(result.toString())
+            }
+
+
+        }
+
+
+
+    }
+
 }
 
 @Composable

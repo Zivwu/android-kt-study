@@ -1,5 +1,9 @@
 package com.example.ktstudy.login.model
 
-data class User (val string: String){
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
+data class User (val string: String?){
+
 
 }
