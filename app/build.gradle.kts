@@ -2,7 +2,8 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
-    alias(libs.plugins.moshi)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -69,7 +70,8 @@ dependencies {
     implementation(libs.moshi.convert)
     ksp(libs.moshi.gen)
 
-
+    implementation(libs.hilt)
+    ksp(libs.hilt.gen)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)

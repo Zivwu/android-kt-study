@@ -1,6 +1,5 @@
 package com.example.comm.model
 
-import com.example.ktstudy.login.model.User
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
