@@ -2,14 +2,16 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
 }
 
 android {
     namespace = "com.inno.base"
-    compileSdk = 34
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = 21
+        minSdk = libs.versions.minSdk.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -35,9 +37,34 @@ android {
 
 dependencies {
 
-    implementation(libs.core.ktx)
-    implementation(libs.appcompat)
-    implementation(libs.material)
+
+    api(libs.core.ktx)
+    api(libs.lifecycle.runtime.ktx)
+    api(libs.activity.compose)
+    api(platform(libs.compose.bom))
+    api(libs.ui)
+    api(libs.ui.graphics)
+    api(libs.ui.tooling.preview)
+    api(libs.material3)
+    api(libs.material)
+    api(libs.appcompat)
+    api(libs.androidx.activity)
+    api(libs.androidx.constraintlayout)
+
+    api(libs.retrofit)
+    api(libs.logging.interceptor)
+    api(libs.moshi)
+    api(libs.moshi.convert)
+    api(libs.hilt)
+
+
+
+    ksp(libs.moshi.gen)
+    ksp(libs.hilt.gen)
+
+
+
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)

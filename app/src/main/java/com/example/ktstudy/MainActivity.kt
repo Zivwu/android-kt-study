@@ -1,5 +1,6 @@
 package com.example.ktstudy
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -25,24 +26,23 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.lifecycleScope
 import com.example.ktstudy.login.data.UserRepository
-import com.example.ktstudy.login.data.api.UserApi
 import com.example.ktstudy.ui.theme.KtStudyTheme
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Inject
-import kotlin.reflect.KClass
 
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    @Inject
-    lateinit var repository: UserRepository
+
+
+
+
+    fun ss (x: Int =1,y : Int): Unit {
+
+    }
 
 //    @Inject
 //    lateinit var sf: FeatureXFragmentViewModel
@@ -57,8 +57,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     OnboardingScreen(onContinueClicked = {
-
-                        startActivity( Intent(this,MainActivity::class.java))
+//                        startActivity( Intent(this,MainActivity::class.java))
 
 //                      lifecycleScope.launch {
 //                          var res =  repository.request();

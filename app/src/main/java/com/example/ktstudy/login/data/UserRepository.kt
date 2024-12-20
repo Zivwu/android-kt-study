@@ -15,7 +15,7 @@ class UserRepository @Inject constructor() {
 
 
 
-    suspend fun  request(): NetResult<User?>? {
+     fun  request(): NetResult<User?>? {
 
         val builder = OkHttpClient.Builder()
             .addNetworkInterceptor(HttpLoggingInterceptor())

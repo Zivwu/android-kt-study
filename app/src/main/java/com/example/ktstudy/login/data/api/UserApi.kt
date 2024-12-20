@@ -26,7 +26,7 @@ interface UserApi {
      */
     @FormUrlEncoded
     @POST("/user/register")
-    suspend fun register(
+     fun register(
         @Field("username") username: String,
         @Field("password") password: String,
         @Field("repassword") repassword: String

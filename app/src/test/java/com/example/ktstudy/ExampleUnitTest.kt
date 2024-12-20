@@ -1,5 +1,8 @@
 package com.example.ktstudy
 
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -38,4 +41,17 @@ class ExampleUnitTest {
         println(a);
 
     }
+
+    @Test
+    fun cus() {
+        GlobalScope.launch {
+            repeat(1000) { i ->
+                println("job: I'm sleeping $i ...")
+                delay(500L)
+            }
+        }
+    }
 }
+
+
+
