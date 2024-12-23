@@ -50,6 +50,10 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -58,6 +62,8 @@ dependencies {
     api(libs.hilt )
     ksp(libs.moshi.gen)
     ksp(libs.hilt.gen)
+
+    implementation ( "androidx.fragment:fragment-ktx:1.3.3")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)

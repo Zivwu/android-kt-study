@@ -1,7 +1,5 @@
 package com.example.ktstudy
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -26,17 +24,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.ktstudy.login.data.UserRepository
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.ktstudy.ui.theme.KtStudyTheme
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
+    var date : LiveData<String> = MutableLiveData<String>();
 
 
 
@@ -49,6 +46,9 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        date.observe(this,{
+
+        })
         setContent {
             KtStudyTheme {
                 // A surface container using the 'background' color from the theme

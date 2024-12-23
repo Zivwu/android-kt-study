@@ -37,7 +37,7 @@ android {
 
 dependencies {
 
-
+    api(kotlin("reflect"))
     api(libs.core.ktx)
     api(libs.lifecycle.runtime.ktx)
     api(libs.activity.compose)
