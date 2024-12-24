@@ -1,3 +1,7 @@
+import com.android.build.gradle.internal.tasks.databinding.DataBindingGenBaseClassesTask
+import org.gradle.configurationcache.extensions.capitalized
+import org.jetbrains.kotlin.gradle.tasks.AbstractKotlinCompileTool
+
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
     alias(libs.plugins.androidApplication)
@@ -54,7 +58,21 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
 }
+
+androidComponents {
+    onVariants(selector().all()) { variant ->
+        afterEvaluate {
+            project.tasks.getByName("ksp" + variant.name.capitalized() + "Kotlin") {
+                val dataBindingTask =
+                    project.tasks.getByName("dataBindingGenBaseClasses" + variant.name.capitalized()) as DataBindingGenBaseClassesTask
+                (this as AbstractKotlinCompileTool<*>).setSource(dataBindingTask.sourceOutFolder)
+            }
+        }
+    }
+}
+
 
 dependencies {
 
@@ -64,6 +82,9 @@ dependencies {
     ksp(libs.hilt.gen)
 
     implementation ( "androidx.fragment:fragment-ktx:1.3.3")
+    implementation ( "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
+    implementation ( "androidx.lifecycle:lifecycle-runtime-ktx:2.4.0")
+    implementation ( "androidx.lifecycle:lifecycle-livedata-ktx:2.4.0")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
@@ -73,4 +94,6 @@ dependencies {
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
 
+
 }
+

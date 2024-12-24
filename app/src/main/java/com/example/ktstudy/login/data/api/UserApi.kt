@@ -1,16 +1,18 @@
 package com.example.ktstudy.login.data.api
 
 import com.example.comm.model.NetResult
+import com.example.ktstudy.login.model.Pet
 import com.example.ktstudy.login.model.User
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface UserApi {
 
-    @GET("users")
-    suspend fun getUser(): User
+    @GET("/pet/findByStatus")
+     fun getPets(@Query("status") status: String): List<Pet>
 
 
     @POST()
