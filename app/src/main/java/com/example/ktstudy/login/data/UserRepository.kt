@@ -1,22 +1,17 @@
 package com.example.ktstudy.login.data
 
-import androidx.lifecycle.lifecycleScope
-import com.example.comm.model.NetResult
 import com.example.ktstudy.login.data.api.UserApi
-import com.example.ktstudy.login.model.Pet
-import com.example.ktstudy.login.model.User
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Inject
+import kotlin.system.measureTimeMillis
 
 class UserRepository @Inject constructor() {
-      val userApi : UserApi;
+    private  val userApi : UserApi;
     init {
         val builder = OkHttpClient.Builder()
             .addNetworkInterceptor(HttpLoggingInterceptor())
@@ -31,12 +26,6 @@ class UserRepository @Inject constructor() {
     }
 
 
-    suspend fun getPets11(status: String  ="" ): List<String> {
-
-//        return userApi.getPets("");
-
-        return  listOf("Nile", "Amazon", "Yangtze");
-    }
 
     var index =1;
      fun getPets(status: String=""): Flow<List<String>> {
