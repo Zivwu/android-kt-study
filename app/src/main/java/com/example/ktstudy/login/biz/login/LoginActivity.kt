@@ -55,10 +55,10 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
         val fibonacci = viewModel.fibonacci();
 
 //        fibonacci.take(100).collect { println(it) }
-        viewModel.viewModelScope.launch (context =  Dispatchers.IO){  }
+        lifecycleScope.launch (context =  Dispatchers.IO){  }
         mBinding.btnCommit.setOnClickListener {
 
-           lifecycleScope.launch {
+          var job=  lifecycleScope.launch {
                viewModel.getPets()
                    .onStart {
                        println(it)
@@ -70,11 +70,12 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
                        println("collect  :${it.toString()}")
                    }
            }
+            job.cancel()
 
-//            viewModel.getPets().flowWithLifecycle(lifecycle)
-//                .asLiveData().observe(this) {
-//                mBinding.edName.text = it.toString();
-//            }
+            viewModel.getPets().flowWithLifecycle(lifecycle)
+                .asLiveData().observe(this) {
+                mBinding.edName.text = it.toString();
+            }
 
 
         }

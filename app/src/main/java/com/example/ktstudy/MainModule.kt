@@ -1,6 +1,10 @@
 package com.example.ktstudy
 
 import androidx.activity.ComponentActivity
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.example.comm.model.NetResult
@@ -48,4 +52,10 @@ class FeatureXFragmentViewModel @Inject constructor(
 ) : ViewModel() {
      val entityId: String = savedStateHandle.get<String>("ENTITY_ID_EXTRA")!!
      // ...
+}
+
+class  MyLifeOb : DefaultLifecycleObserver {
+
+
+
 }

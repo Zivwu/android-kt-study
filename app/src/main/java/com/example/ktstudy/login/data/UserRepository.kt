@@ -1,12 +1,14 @@
 package com.example.ktstudy.login.data
 
 import com.example.ktstudy.login.data.api.UserApi
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import java.time.Duration
 import javax.inject.Inject
 import kotlin.system.measureTimeMillis
 
@@ -31,6 +33,7 @@ class UserRepository @Inject constructor() {
      fun getPets(status: String=""): Flow<List<String>> {
          index  ++ ;
          return  flow {
+             delay(10000)
              val pets = listOf("Nile $index", "Amazon $index", "Yangtze $index")
              emit(pets)
 

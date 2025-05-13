@@ -41,7 +41,7 @@ class LoginViewModel @Inject constructor(
     private val repository: UserRepository
 ) : ViewModel() {
 
-    private val loginLiveData = MutableLiveData<User?>()
+     val loginLiveData = MutableLiveData<User?>()
 
 
     fun initPets(): Unit {

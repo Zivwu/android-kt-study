@@ -1,5 +1,6 @@
 package com.example.ktstudy
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -26,6 +27,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.ktstudy.login.biz.login.LoginActivity
 import com.example.ktstudy.ui.theme.KtStudyTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -57,7 +59,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     OnboardingScreen(onContinueClicked = {
-//                        startActivity( Intent(this,MainActivity::class.java))
+                        startActivity( Intent(this,LoginActivity::class.java))
 
 //                      lifecycleScope.launch {
 //                          var res =  repository.request();
